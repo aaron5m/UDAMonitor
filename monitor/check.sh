@@ -28,17 +28,32 @@ fetch_headers() {
   curl -s -L -D "$TEMP_LOG" -o /dev/null "$URL"
 }
 
-extract_final_status() {
+extract_http_statuses() {
   grep -Eo '^HTTP/[0-9\.]+\s+[0-9]{3}' "$TEMP_LOG" \
-    | tail -n 1 \
     | awk '{print $2}'
 }
 
+extract_redirect_locations() {
+  grep -Ei '^Location:' "$TEMP_LOG" \
+    | awk '{print $2}'
+}
+
+extract_final_status() {
+  extract_http_statuses | tail -n 1
+}
+
+count_redirects() {
+  local total
+  total="$(extract_http_statuses | wc -l)"
+  echo $(( total - 1 ))  # subtract final response
+}
+
 log_result() {
-  local timestamp status state
+  local timestamp status state redirects
 
   timestamp="$(date +"%Y-%m-%d %H:%M:%S")"
   status="$1"
+  redirects="$2"
 
   if [ "$status" -eq 200 ]; then
     state="UP"
@@ -46,7 +61,8 @@ log_result() {
     state="DOWN"
   fi
 
-  echo "$timestamp | $URL | $state | HTTP $status" >> "$LOG_FILE"
+  echo "$timestamp | $URL | $state | HTTP $status | redirects=$redirects" \
+   >> "$LOG_FILE"
 }
 
 cleanup() {
@@ -65,6 +81,7 @@ ensure_log_dir
 fetch_headers
 
 HTTP_STATUS="$(extract_final_status)"
+REDIRECT_COUNT="$(count_redirects)"
 
 if [[ ! "$HTTP_STATUS" =~ ^[0-9]+$ ]]; then
   echo "ERROR: Could not determine HTTP status"
@@ -72,5 +89,5 @@ if [[ ! "$HTTP_STATUS" =~ ^[0-9]+$ ]]; then
   exit 1
 fi
 
-log_result "$HTTP_STATUS"
+log_result "$HTTP_STATUS" "$REDIRECT_COUNT"
 cleanup
