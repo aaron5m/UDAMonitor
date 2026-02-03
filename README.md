@@ -60,8 +60,22 @@ This initial version prioritizes correctness, clarity, and portability over scal
 
 ---
 
+## Current Progress (v1.2)
+- `check.sh` script implemented in clean Bash
+- Tracks HTTP status codes for multiple URLs
+- Counts redirects for each URL
+- Logs are stored in the `logs/` directory
+- Basic clean Bash refactor complete:
+  - Improved readability
+  - Clear functions
+  - Better variable handling
+  - Redirect counting added
+  
+--
+
 ## Repository Structure
 
+<code>
 UDAMonitor/
 ├── README.md
 ├── docs/
@@ -71,9 +85,10 @@ UDAMonitor/
 ├── monitor/
 │ ├── check.sh
 │ └── config.env
+│ └── logs/
 ├── scripts/
-│ └── install.sh
-└── logs/
+  └── install.sh
+</code>
 
 ---
 
@@ -82,7 +97,7 @@ UDAMonitor/
 Planned evolution of the project:
 
 1. **Local monitoring**
-   - Bash-based HTTP checks
+   - Bash-based HTTP checks [x] 2026-02-02
    - Structured logging
    - Cron-based scheduling
 
@@ -123,3 +138,28 @@ Design decisions, tradeoffs, and lessons learned are documented throughout the r
 
 🚧 Actively under development  
 Initial implementation focuses on core uptime checking and logging.
+
+--
+
+# INSTALLATION AND USAGE
+
+1. **Clone the repo**
+
+```bash
+git clone https://github.com/<your-username>/UDAMonitor.git
+cd UDAMonitor
+
+2. **Set execute permissions for the script**
+
+chmod +x check.sh
+
+3. **Run the script**
+
+./check.sh
+
+4. **Check the logs**
+
+Logs are saved in monitor/logs/ directory
+
+Each entry includes:
+Timestamp | URL | HTTP status | Redirect count
