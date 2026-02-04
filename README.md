@@ -60,16 +60,15 @@ This initial version prioritizes correctness, clarity, and portability over scal
 
 ---
 
-## Current Progress (v1.2)
+## Current Progress (v1.3)
 - `check.sh` script implemented in clean Bash
-- Tracks HTTP status codes for multiple URLs
-- Counts redirects for each URL
+- Tracks HTTP status codes for a single URL
+- Counts redirects
 - Logs are stored in the `logs/` directory
-- Basic clean Bash refactor complete:
-  - Improved readability
-  - Clear functions
-  - Better variable handling
-  - Redirect counting added
+- `start_monitor.sh` makes cron job for `check.sh`
+  - user sets url and interval to run check
+- `stop_monitor.sh` deletes cron job
+- `setup.sh` grants proper file permissions
   
 --
 
