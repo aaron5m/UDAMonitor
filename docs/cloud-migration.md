@@ -89,6 +89,11 @@ At this stage, logs are used primarily for visibility rather than automated aler
 - Script output is written to a log file that is shipped to CloudWatch Logs via the CloudWatch agent.
 - Permissions are granted exclusively through the attached IAM role.
 
+### Operational Decisions
+- **SSH ACCESS** temporarily open to all IPs to accommodate dynamic IP addresses while traveling. Key-based authentication is used, and no passwords are enabled. In a production environment, access would be restricted to known IP ranges or replaced with SSM Session Manager.
+- **Storage/Encryption** - The root EBS volume is not encrypted. This is acceptable for this development instance since no sensitive data is stored. In production, encryption would be enabled by default to meet standard security practices.
+
+
 ---
 
 ## Non-Goals for This Phase
