@@ -7,7 +7,8 @@ set -euo pipefail
 #######################################
 
 URL="${1:-}"
-LOG_DIR="logs"
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+LOG_DIR="$SCRIPT_DIR/logs"
 LOG_FILE="$LOG_DIR/monitor.log"
 TEMP_LOG="$LOG_DIR/temp_headers.log"
 
