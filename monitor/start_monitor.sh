@@ -8,7 +8,8 @@ set -euo pipefail
 
 URL="${1:-}"
 minutes="${2:-}"
-CRON_ADD_INTERVAL="*/$minutes * * * * $PWD/start_udamonitor.sh"
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+CRON_ADD_INTERVAL="*/$minutes * * * * $SCRIPT_DIR/start_monitor.sh $URL $minutes"
 
 #######################################
 # Helpers
@@ -30,7 +31,7 @@ set_or_ensure_cron() {
     #((crontab -l 2>/dev/null || true); echo "$interval") | crontab -
     echo "Cron job has been set up to run every $minutes minutes."
   else
-    job_exists=$(crontab -l | grep "$PWD/start_udamonitor.sh")
+    job_exists=$(crontab -l | grep "$SCRIPT_DIR/start_monitor.sh")
     if [ -z "$job_exists" ]; then
       (crontab -l 2>/dev/null; echo "$interval") | crontab -
     else
@@ -42,7 +43,7 @@ set_or_ensure_cron() {
 run_checker() {
   local website
   website="$1"
-  bash check.sh "$website"
+  bash "$SCRIPT_DIR"/check.sh "$website"
 }
 
 #######################################
@@ -55,5 +56,4 @@ fi
 
 set_or_ensure_cron
 
-exit
 run_checker "$URL"
