@@ -93,6 +93,12 @@ At this stage, logs are used primarily for visibility rather than automated aler
 - **SSH ACCESS** temporarily open to all IPs to accommodate dynamic IP addresses while traveling. Key-based authentication is used, and no passwords are enabled. In a production environment, access would be restricted to known IP ranges or replaced with SSM Session Manager.
 - **Storage/Encryption** - The root EBS volume is not encrypted. This is acceptable for this development instance since no sensitive data is stored. In production, encryption would be enabled by default to meet standard security practices.
 
+### Cron Job Management
+- Added `stop_monitor.sh` to remove all existing UDAMonitor cron jobs
+- `start_monitor.sh` now calls `stop_monitor.sh` at the start
+  - Guarantees the EC2 instance crontab always matches `config/urls.txt`
+  - Simplifies handling of removed URLs and updated intervals
+- Scripts handle empty crontabs safely across Linux and macOS
 
 ---
 

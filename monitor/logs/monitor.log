@@ -1,2 +1,9 @@
 2026-02-05 14:04:00 | http://google.com HTTP | 200 | redirects=2
 2026-02-05 14:04:00 | https://www.microsoft.com HTTP | 200 | redirects=2
+2026-02-05 14:06:00 | http://google.com HTTP | 200 | redirects=1
+2026-02-05 14:08:00 | http://google.com HTTP | 200 | redirects=2
+2026-02-05 14:08:00 | https://www.microsoft.com HTTP | 200 | redirects=2
+2026-02-05 14:10:00 | http://google.com HTTP | 200 | redirects=1
+2026-02-05 14:12:00 | http://google.com HTTP | 200 | redirects=2
+2026-02-05 14:12:00 | https://www.microsoft.com HTTP | 200 | redirects=2
+2026-02-05 14:14:00 | http://google.com HTTP | 200 | redirects=1

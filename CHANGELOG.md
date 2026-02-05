@@ -1,3 +1,19 @@
+## v1.6 - 2026-02-05
+
+### Implementation Decision
+A user can clone the repo into their machine, local or cloud, edit the monitor/config/urls.txt file for their websites and intervals, then simply run bash monitor/bin/start_monitor.sh
+The documentation will instruct users to run start_monitor any time they alter urls.txt
+A user runs stop_monitor.sh to stop monitoring all websites (to stop monitoring one, the user alters urls.txt and runs start_monitor)
+
+### Design Decisions
+- start_monitor.sh now calls stop_monitor.sh at the beginning
+  - Ensures cron jobs match current config/urls.txt
+  - Handles removed URLs and updated intervals
+- stop_monitor.sh fixed:
+  - Removed UDAMonitor jobs safely even if none exist
+  - Handles empty crontabs without failing (cross-platform)
+
+
 ## [Unreleased] v1.5 - 2026-02-05
 
 ### Problem
