@@ -1,0 +1,2 @@
+*/2 * * * * /Users/mac/devpros/UDAMonitor/monitor/bin/run_monitor.sh http://google.com # UDAMonitor:http://google.com
+*/3 * * * * /Users/mac/devpros/UDAMonitor/monitor/bin/run_monitor.sh https://www.microsoft.com # UDAMonitor:https://www.microsoft.com

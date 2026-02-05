@@ -12,7 +12,7 @@ source "$SCRIPT_DIR/../lib/parse_urls.sh"
 
 URL_FILE="$SCRIPT_DIR/../config/urls.txt"
 RUN_SCRIPT="$SCRIPT_DIR/run_monitor.sh"
-CRON_TMP="/tmp/udamonitor_cron.$$"
+CRON_TMP="$SCRIPT_DIR/../tmp/udamonitor_cron.$$"
 
 chmod +x "$RUN_SCRIPT"
 
@@ -20,7 +20,7 @@ chmod +x "$RUN_SCRIPT"
 crontab -l 2>/dev/null > "$CRON_TMP" || true
 
 parse_urls "$URL_FILE" | while read -r url interval; do
-    marker="# UDAMonitor:$url"
+    marker="#UDAMonitor:$url"
     new_job="*/$interval * * * * $RUN_SCRIPT $url $marker"
 
     if grep -q "$marker" "$CRON_TMP"; then

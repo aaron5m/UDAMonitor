@@ -2,6 +2,7 @@
 
 ### Problem
 - The current scripts are over-complex now that cron enters the picture
+- The user and cron should have two different entry points to the application.
 
 ### Added
 - start_monitor.sh simply reads urls.txt and creates the cron jobs
