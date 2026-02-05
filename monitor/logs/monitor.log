@@ -26,3 +26,9 @@
 2026-02-05 09:43:28 | https://microsoft.com HTTP | 200 | redirects=1
 2026-02-05 09:45:35 | http://google.com HTTP | 200 | redirects=1
 2026-02-05 09:45:37 | https://www.microsoft.com HTTP | 200 | redirects=0
+2026-02-05 12:39:01 | https://www.microsoft.com HTTP | 200 | redirects=0
+2026-02-05 12:40:00 | http://google.com HTTP | 200 | redirects=1
+2026-02-05 12:42:00 | http://google.com HTTP | 200 | redirects=2
+2026-02-05 12:42:00 | https://www.microsoft.com HTTP | 200 | redirects=2
+2026-02-05 12:44:00 | http://google.com HTTP | 200 | redirects=1
+2026-02-05 12:45:00 | https://www.microsoft.com HTTP | 200 | redirects=0

@@ -1,2 +1,2 @@
-http://google.com 5
-https://www.microsoft.com 10
+http://google.com 2
+https://www.microsoft.com 3

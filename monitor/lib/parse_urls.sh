@@ -1,23 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # lib/parse_urls.sh
 
 parse_urls() {
     local url_file="$1"
-    local urls=()
-    local intervals=()
 
-    while read -r line || [[ -n "$line" ]]; do
-        [[ "$line" =~ ^#.*$ ]] && continue
-        [[ -z "$line" ]] && continue
+    while read -r url interval; do
+        [[ -z "$url" ]] && continue
+        [[ "$url" =~ ^# ]] && continue
+        
+        if [[ -z "$interval" ]]; then
+            echo "Invalid entry in $url_file: missing interval for $url" >&2
+            continue
+        fi
 
-        url=$(echo "$line" | awk '{print $1}')
-        interval=$(echo "$line" | awk '{print $2}')
-
-        urls+=("$url")
-        intervals+=("$interval")
+        echo "$url $interval"
     done < "$url_file"
-
-    # Return arrays by printing with a delimiter
-    # Use | as delimiter; caller will split
-    echo "${urls[*]}|${intervals[*]}"
 }
