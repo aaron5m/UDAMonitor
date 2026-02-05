@@ -1,2 +1,0 @@
-http://google.com 5
-https://cloudflare.com 10
