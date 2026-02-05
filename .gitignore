@@ -1,1 +1,5 @@
 *.DS_store
+monitor/tmp/*
+monitor/logs/*
+!monitor/tmp/.gitkeep
+!monitor/logs/.gitkeep

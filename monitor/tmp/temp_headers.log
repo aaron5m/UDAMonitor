@@ -1,0 +1,43 @@
+HTTP/1.1 301 Moved Permanently
+Location: http://www.google.com/
+Content-Type: text/html; charset=UTF-8
+Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-sFIscpqhW4uygwHwUqSl0A' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+Reporting-Endpoints: default="//www.google.com/httpservice/retry/jserror?ei=AD-EabyTPMikqtsPkq-nmQU&cad=crash"
+Date: Thu, 05 Feb 2026 06:56:00 GMT
+Expires: Sat, 07 Mar 2026 06:56:00 GMT
+Cache-Control: public, max-age=2592000
+Server: gws
+Content-Length: 219
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+
+HTTP/1.1 200 OK
+Date: Thu, 05 Feb 2026 06:56:01 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-0ELeqjrq97_WJDCQlLxX_Q' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+Reporting-Endpoints: default="//www.google.com/httpservice/retry/jserror?ei=AT-EabyOH5KmmtkPxpTKkAY&cad=crash"
+P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+Server: gws
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+Set-Cookie: __Secure-STRP=AD6Dogu5lsP3tPaifWxEqe9VKW8LMzq60ixe4ydwp5SVLT0E4hpO96VBswITufVzalIlBHOEQICiY1H6e7xOn2wE3lcZfVvAilhb; expires=Thu, 05-Feb-2026 07:01:01 GMT; path=/; domain=.google.com; Secure; SameSite=strict
+Set-Cookie: AEC=AaJma5u9C51FmzC62YKPHERhjc-K_Yk6R8hnznLWuhcFY0UDsrUY5ywIww; expires=Tue, 04-Aug-2026 06:56:01 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax
+Set-Cookie: NID=528=ia0Y3oCzFkzRQqNybeJqrLKy7kk0KyX3JWFdROcOJbj1TKdusI9xQ4fvg7d3ktcnp8uahyJ3TGReiNeyE-Ny5L-SqjvVYEqMvltDJxGoXWNstC0lKZvIFM8GmbwPkasp7Zwm19uFS97VdEQ2CESZmZYdbzlH32x-4vY0GSlXGhV4N9v3lsv_56dNzz4ekAu91-B_-dkoOc0B8_mkXtTfpc5OhKdqkEUslX12hNs; expires=Fri, 07-Aug-2026 06:56:01 GMT; path=/; domain=.google.com; HttpOnly
+Accept-Ranges: none
+Vary: Accept-Encoding
+Transfer-Encoding: chunked
+
+HTTP/2 200 
+accept-ranges: bytes
+content-type: text/html
+etag: "85de642e1467807f64f7e10807df3869:1711562737.176211"
+last-modified: Tue, 26 Mar 2024 18:16:43 GMT
+server: AkamaiNetStorage
+content-length: 201253
+expires: Thu, 05 Feb 2026 06:56:01 GMT
+cache-control: max-age=0, no-cache, no-store
+pragma: no-cache
+date: Thu, 05 Feb 2026 06:56:01 GMT
+
