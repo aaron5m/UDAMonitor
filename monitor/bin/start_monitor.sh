@@ -8,6 +8,11 @@ set -euo pipefail
 
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
+# Step 0: remove any existing UDAMonitor cron jobs
+chmod +x "$SCRIPT_DIR/stop_monitor.sh"
+"$SCRIPT_DIR/stop_monitor.sh"
+
+# Helpers
 source "$SCRIPT_DIR/../lib/parse_urls.sh"
 
 URL_FILE="$SCRIPT_DIR/../config/urls.txt"
@@ -45,3 +50,5 @@ crontab "$CRON_TMP"
 rm "$CRON_TMP"
 
 echo "UDAMonitor cron jobs installed/updated."
+
+

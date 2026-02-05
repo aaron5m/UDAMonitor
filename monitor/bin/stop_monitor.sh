@@ -20,7 +20,7 @@ grep -v -E "#UDAMonitor:" "$CRON_TMP" > "${CRON_TMP}.new" || true
 if [[ -s "${CRON_TMP}.new" ]]; then
     crontab "${CRON_TMP}.new"
 else
-    crontab -r
+    crontab -r 2>/dev/null || true
 fi
 
 rm -f "$CRON_TMP" "${CRON_TMP}.new"
