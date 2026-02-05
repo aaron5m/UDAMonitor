@@ -29,6 +29,10 @@ count_redirects() {
   echo $(( total - 1 ))  # subtract final response
 }
 
+cleanup() {
+  rm -f "$TEMP_LOG"
+}
+
 #######################################
 # Main Utility
 #######################################
@@ -42,5 +46,7 @@ check_url() {
     status="$(extract_final_status)"
     redirects="$(count_redirects)"
 
-    echo "$timestamp | $url | HTTP $status | redirects=$redirects"
+    echo "$timestamp | $url HTTP | $status | redirects=$redirects"
+    
+    #cleanup
 }

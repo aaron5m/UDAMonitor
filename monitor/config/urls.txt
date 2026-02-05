@@ -1,2 +1,2 @@
 http://google.com 5
-https://cloudflare.com 10
+https://www.microsoft.com 10

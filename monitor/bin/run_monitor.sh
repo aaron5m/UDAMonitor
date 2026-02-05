@@ -10,7 +10,7 @@ SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
 #source helpers
 SCRIPT_DIR=$(dirname "$0")
-#source "$SCRIPT_DIR/../lib/logger.sh"
+source "$SCRIPT_DIR/../lib/logger.sh"
 source "$SCRIPT_DIR/../lib/http_check.sh"
 source "$SCRIPT_DIR/../lib/parse_urls.sh"
 
@@ -28,7 +28,6 @@ IFS=' ' read -r -a urls <<< "$urls_str"
 IFS=' ' read -r -a intervals <<< "$intervals_str"
 
 for i in "${!urls[@]}"; do
-    echo "${urls[$i]}"
-    check_url "${urls[$i]}"
-    # log_message "${urls[$i]} - HTTP $status" "$LOG_FILE"
+    msg="$(check_url "${urls[$i]}")"
+    log_message "$msg"
 done
