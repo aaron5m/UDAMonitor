@@ -1,0 +1,31 @@
+HTTP/1.1 301 Moved Permanently
+Location: http://www.google.com/
+Content-Type: text/html; charset=UTF-8
+Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-qOwSNd5yI8D9RN4e93Gm4g' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+Reporting-Endpoints: default="//www.google.com/httpservice/retry/jserror?ei=OUOEaeiSLOKymtkPg52Y8A8&cad=crash"
+Date: Thu, 05 Feb 2026 07:14:01 GMT
+Expires: Sat, 07 Mar 2026 07:14:01 GMT
+Cache-Control: public, max-age=2592000
+Server: gws
+Content-Length: 219
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+
+HTTP/1.1 200 OK
+Date: Thu, 05 Feb 2026 07:14:02 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-gLVLe_FFy8j8EQ1rxnkdqw' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+Reporting-Endpoints: default="//www.google.com/httpservice/retry/jserror?ei=OkOEabyzFJmymtkPyfX20Aw&cad=crash"
+P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+Server: gws
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+Set-Cookie: __Secure-STRP=AD6DoguW30l4wTevoqLMNaRcjZshbfNiL4ATLhf8oCGqGuMpwlTKIsqugg1Zu6DINYs2-H2Kfd3RPxTwkxpTFCUKPcgm4Eg5tH0S; expires=Thu, 05-Feb-2026 07:19:02 GMT; path=/; domain=.google.com; Secure; SameSite=strict
+Set-Cookie: AEC=AaJma5tujrkLP6gx2S2sVyqfcqlNjP4-UNDsE5eYqplui1YmKhr0LQwSew; expires=Tue, 04-Aug-2026 07:14:02 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax
+Set-Cookie: NID=528=ZIRYHB_FKYLhJCkHxW0EEnqCzNxvI3ORNpEIzOdK-R0kDJ64bWkhZX3d6MUveywbTdhZ_Oe5jIqyo8G_82_KyVGc1wWy7kpBuyReCpWHBSpR0kJsWQwDwiqrFCcuT0CFRL2uA7RvdF4n4uSv9QGLvRGvRHaF7H0fkxz6lLWSUs-EpVdGMCjixwA8fWVqYLuXczGc7EGyZ2rvLPOu_fqh1MTcjF5ynRYZKPnPuFU; expires=Fri, 07-Aug-2026 07:14:02 GMT; path=/; domain=.google.com; HttpOnly
+Accept-Ranges: none
+Vary: Accept-Encoding
+Transfer-Encoding: chunked
+
