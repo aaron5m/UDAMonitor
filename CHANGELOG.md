@@ -1,3 +1,17 @@
+## [Unreleased] v1.5 - 2026-02-05
+
+### Problem
+- The current scripts are over-complex now that cron enters the picture
+
+### Added
+- start_monitor.sh simply reads urls.txt and creates the cron jobs
+- now run_monitor.sh does not cycle through urls, but runs on one url
+
+### Changed
+- returning now to passing an argument with run_monitor.sh to simplify cron
+
+-----
+
 ## [Unreleased] v1.4 - 2026-02-05
 
 ### Problem (realized after the fact, unfortunately)
@@ -8,6 +22,8 @@
 
 ### Changed
 - Removed requirement to pass URL as a command-line argument.
+
+-----
 
 
 ## v2.x – EC2 Deployment
