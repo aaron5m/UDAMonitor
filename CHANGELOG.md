@@ -1,5 +1,11 @@
-## v1.6 - 2026-02-05
 
+## v1.7 - 2026-02-05
+- Refactored `start_monitor.sh` to automatically set executable permissions on all necessary scripts (bin/ and lib/) before installing cron jobs.
+- Also verifies write permissions to logs and tmp folder
+- Ensures install-time hygiene and prevents permission errors for new users or fresh clones.
+- Verified idempotent behavior: can be run multiple times safely.
+
+## v1.6 - 2026-02-05
 ### Implementation Decision
 A user can clone the repo into their machine, local or cloud, edit the monitor/config/urls.txt file for their websites and intervals, then simply run bash monitor/bin/start_monitor.sh
 The documentation will instruct users to run start_monitor any time they alter urls.txt
