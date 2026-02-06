@@ -17,17 +17,27 @@ source "$SCRIPT_DIR/../lib/http_check.sh"
 url_to_logfile() {
     local url="$1"
     local filename
+    local prefix=""
 
-    # Strip scheme (http:// or https://)
-    filename="${url#http://}"
-    filename="${filename#https://}"
+    # Detect scheme
+    if [[ "$url" == https://* ]]; then
+        prefix="s-"
+        filename="${url#https://}"
+    elif [[ "$url" == http://* ]]; then
+        filename="${url#http://}"
+    else
+        # No scheme (edge case)
+        filename="$url"
+    fi
 
-    # Replace dots with dashes and any remaining unsafe chars with underscores
+    # Replace dots with dashes
     filename="${filename//./-}"
+
+    # Replace remaining unsafe characters with underscores
     filename="$(echo "$filename" | sed 's|[:/?&=]|_|g')"
 
-    # Append .log
-    echo "$filename.log"
+    # Emit final filename
+    echo "${prefix}${filename}.log"
 }
 
 # Prepare log file and temp file

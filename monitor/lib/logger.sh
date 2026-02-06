@@ -3,5 +3,6 @@
 
 log_message() {
     local message="$1"
-      echo "$message" >> "$LOG_FILE"
+    clean_message="$(printf '%s\n' "$message" | tr -d '\r')"
+    echo "$clean_message" >> "$LOG_FILE"
 }

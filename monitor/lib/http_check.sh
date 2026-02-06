@@ -5,7 +5,7 @@
 # Helpers
 #######################################
 
-TEMP_LOG="$SCRIPT_DIR/../tmp/temp_headers.log"
+TEMP_LOG="$SCRIPT_DIR/../tmp/$RANDOM.log"
 
 fetch_headers() {
     local url="$1"
