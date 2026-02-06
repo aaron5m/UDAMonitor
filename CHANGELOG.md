@@ -1,3 +1,11 @@
+## [v2.1] - 2026-02-06 Running on CLOUD EC2 Instance
+### Added
+- version 1.7 cloned into an EC2 instance
+- CloudWatch logging for UDAMonitor:
+  - Logs written to `logs/monitor.log` are now automatically shipped to AWS CloudWatch via the CloudWatch Agent.
+  - IAM role attached to EC2 ensures secure, least-privilege access for logging.
+  - Cron jobs continue to run as before; CloudWatch integration runs transparently in the background.
+  - Screenshots and example outputs included in Wiki to demonstrate functionality.
 
 ## v1.7 - 2026-02-05
 - Refactored `start_monitor.sh` to automatically set executable permissions on all necessary scripts (bin/ and lib/) before installing cron jobs.

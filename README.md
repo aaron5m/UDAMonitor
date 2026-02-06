@@ -33,7 +33,7 @@ UDAMonitor focuses on solving this problem with a minimal, transparent, and infr
 
 ---
 
-## Non-Goals (v1)
+## Non-Goals (v1, v2)
 
 To keep the scope realistic and focused, the following are explicitly out of scope for the initial versions:
 - User authentication or accounts
@@ -46,7 +46,17 @@ These may be explored in later iterations if the project evolves.
 
 ---
 
-## Current Architecture (v1)
+## Cloud Logging / Observability Architecture (v2.*)
+
+UDAMonitor now supports **cloud-based logging via AWS CloudWatch**:
+
+- Each EC2 instance runs the monitor script on a schedule (cron).
+- Logs are written locally to `logs/monitor.log` **and streamed to CloudWatch**.
+- EC2 instances are attached to an IAM role with `CloudWatchAgentServerPolicy` for secure logging.
+- Centralized logs allow easy monitoring of uptime across instances.
+- See the Wiki for example CloudWatch outputs and configuration.
+
+## Local Architecture (v1.*)
 
 **Status:** Local execution (development phase)
 
@@ -58,18 +68,6 @@ These may be explored in later iterations if the project evolves.
 
 This initial version prioritizes correctness, clarity, and portability over scale.
 
----
-
-## Current Progress (v1.3)
-- `check.sh` script implemented in clean Bash
-- Tracks HTTP status codes for a single URL
-- Counts redirects
-- Logs are stored in the `logs/` directory
-- `start_monitor.sh` makes cron job for `check.sh`
-  - user sets url and interval to run check
-- `stop_monitor.sh` deletes cron job
-- `setup.sh` grants proper file permissions
-  
 --
 
 ## Repository Structure
@@ -77,16 +75,27 @@ This initial version prioritizes correctness, clarity, and portability over scal
 <code>
 UDAMonitor/
 ├── README.md
+├── CHANGELOG.md
 ├── docs/
-│ ├── architecture.md
-│ └── decisions.md
-├── diagrams/
-├── monitor/
-│ ├── check.sh
-│ └── config.env
-│ └── logs/
-├── scripts/
-  └── install.sh
+│ ├── installation-and-usage.md
+│ └── cloud-migration.md
+└── monitor/
+  ├── bin/
+  │ ├── start_monitor.sh
+  │ ├── run_monitor.sh
+  │ └── stop_monitor.sh 
+  ├── lib/
+  │ ├── parse_urls.sh
+  │ ├── set_permissions.sh
+  │ ├── verify_runtime_dirs.sh
+  │ ├── http_check.sh
+  │ └── logger.sh 
+  ├── config/
+  │ ├── urls.txt
+  │ └── cloudwatch-agent.json
+  ├── logs/
+  │ └── monitor.log
+  └── tmp/
 </code>
 
 ---
