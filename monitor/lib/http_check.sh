@@ -8,7 +8,10 @@
 TEMP_LOG="$SCRIPT_DIR/../tmp/temp_headers.log"
 
 fetch_headers() {
-  curl -s -L -D "$TEMP_LOG" -o /dev/null "$1"
+    local url="$1"
+    # curl -s = silent, -L = follow redirects, -D = write headers to TEMP_LOG, -o /dev/null = discard body
+    # -w = write out total time (latency) at end
+    curl -s -L -D "$TEMP_LOG" -o /dev/null -w "%{time_total}" "$url"
 }
 
 extract_http_statuses() {
@@ -65,35 +68,42 @@ check_url() {
     timestamp="$(date +"%Y-%m-%dT%H:%M:%S")"
 
     # Temporary arrays for this check
-    local redirect_count final_status final_url err_msg
+    local redirect_count final_status final_url err_msg redirect_locations redirect_statuses delimiter
     err_msg=""
-
-    # Try to fetch headers and follow redirects
-    if ! fetch_headers "$url"; then
-        err_msg="error=failed_to_fetch_headers"
+    redirect_locations=""
+    redirect_statuses=""
+    delimiter="|"
+    
+    # Fetch headers and measure latency
+    latency=$(fetch_headers "$url") || {
+        err_msg="failed_to_fetch_headers"
         final_status="N/A"
         final_url="$url"
-    else
-        # Build arrays of redirect statuses and locations
-        build_redirects_array
+        redirect_count=0
+        latency="N/A"
+    }
+
+    # If fetch was successful, build redirect arrays
+    if [[ -z "$err_msg" ]]; then
+    
         redirect_count="$(count_redirects)"
+        final_status="$(extract_final_status)"
 
-        if (( ${#REDIRECT_STATUSES[@]} > 0 )); then
-            final_status="$(extract_final_status)"
-        else
-            final_status="N/A"
-        fi
-
+        build_redirects_array
+        
         if (( ${#REDIRECT_LOCATIONS[@]} > 0 )); then
             final_url="$(extract_final_url)"
+            redirect_locations=$(IFS="$delimiter"; echo "${REDIRECT_LOCATIONS[*]}")
+            redirect_statuses=$(IFS="$delimiter"; echo "${REDIRECT_STATUSES[*]}")
+
         else
             final_url="$url"
         fi
 
     fi
-
-    # Echo in line-based key=value format
-    echo "timestamp=$timestamp url=$url final_url=$final_url final_status=$final_status redirect_count=$redirect_count ${err_msg}"
+    
+    #Echo in line-based key=value format
+    echo "timestamp=$timestamp url=$url final_url=$final_url final_status=$final_status redirect_count=$redirect_count latency=$latency redirect_locations=$redirect_locations redirect_statuses=$redirect_statuses err_msg=$err_msg"
 
     cleanup
 }
