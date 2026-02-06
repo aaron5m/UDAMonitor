@@ -142,31 +142,22 @@ Design decisions, tradeoffs, and lessons learned are documented throughout the r
 
 ---
 
-## Status
+# Status
 
 🚧 Actively under development  
 Initial implementation focuses on core uptime checking and logging.
 
---
+## Current State and Problems (EC2 CloudWatch Migration)
 
-# INSTALLATION AND USAGE
-
-1. **Clone the repo**
-
-git clone https://github.com/<your-username>/UDAMonitor.git
-cd UDAMonitor
-
-2. **Set execute permissions for the script**
-
-chmod +x check.sh
-
-3. **Run the script**
-
-./check.sh
-
-4. **Check the logs**
-
-Logs are saved in monitor/logs/ directory
-
-Each entry includes:
-Timestamp | URL | HTTP status | Redirect count
+- UDAMonitor is now running on an EC2 instance.
+- Initial deployment revealed:
+  - EC2 instance lacked `git`, had to install manually
+  - Cron service was missing, had to install manually
+  - CloudWatch agent needed manual start and config
+- These challenges motivated moving towards **Terraform automation**:
+  - EC2 + IAM + CloudWatch provisioning
+  - Automatic software installation via `user-data`
+- Next steps (planned):
+  1. Install Terraform locally and create first module for EC2 setup
+  2. Automate UDAMonitor bootstrap (clone, permissions, start_monitor)
+  3. Validate logs and cron jobs automatically

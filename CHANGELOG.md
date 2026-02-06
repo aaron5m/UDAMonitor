@@ -1,3 +1,16 @@
+## [Unreleased] - 2026-02-06
+
+### Problems encountered in cloud migration to EC2
+  - `git` missing on EC2, required manual installation
+  - Cron not installed, required manual installation
+  - MCloudWatch agent required manual configuration
+
+### Planned
+- Terraform module for automated EC2 + IAM + CloudWatch setup
+- Bootstrap scripts to install and run UDAMonitor automatically
+
+---
+
 ## [v2.1] - 2026-02-06 Running on CLOUD EC2 Instance
 ### Added
 - version 1.7 cloned into an EC2 instance
@@ -7,11 +20,15 @@
   - Cron jobs continue to run as before; CloudWatch integration runs transparently in the background.
   - Screenshots and example outputs included in Wiki to demonstrate functionality.
 
+---
+
 ## v1.7 - 2026-02-05
 - Refactored `start_monitor.sh` to automatically set executable permissions on all necessary scripts (bin/ and lib/) before installing cron jobs.
 - Also verifies write permissions to logs and tmp folder
 - Ensures install-time hygiene and prevents permission errors for new users or fresh clones.
 - Verified idempotent behavior: can be run multiple times safely.
+
+---
 
 ## v1.6 - 2026-02-05
 ### Implementation Decision
@@ -27,6 +44,7 @@ A user runs stop_monitor.sh to stop monitoring all websites (to stop monitoring 
   - Removed UDAMonitor jobs safely even if none exist
   - Handles empty crontabs without failing (cross-platform)
 
+---
 
 ## [Unreleased] v1.5 - 2026-02-05
 
@@ -41,7 +59,7 @@ A user runs stop_monitor.sh to stop monitoring all websites (to stop monitoring 
 ### Changed
 - returning now to passing an argument with run_monitor.sh to simplify cron
 
------
+---
 
 ## [Unreleased] v1.4 - 2026-02-05
 
@@ -54,8 +72,9 @@ A user runs stop_monitor.sh to stop monitoring all websites (to stop monitoring 
 ### Changed
 - Removed requirement to pass URL as a command-line argument.
 
------
+---
 
+# OUTLINE
 
 ## v2.x – EC2 Deployment
 - Migrated monitoring job from local cron to EC2
