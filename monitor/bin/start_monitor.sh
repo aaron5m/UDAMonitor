@@ -49,6 +49,10 @@ parse_urls "$URL_FILE" | while read -r url interval; do
     else
         echo "Adding cron job for $url (every $interval minutes)"
     fi
+    
+    echo "Running a check..."
+    "$SCRIPT_DIR/run_monitor.sh" "$url"
+    echo "Check run complete. Cron job installed."
 
     echo "$new_job" >> "$CRON_TMP"
 done
