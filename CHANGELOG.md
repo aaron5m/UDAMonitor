@@ -1,3 +1,20 @@
+## [v2.1.1] 2026-02-09
+
+### Added
+- Per-website log files instead of a single central log file
+- Console-based log viewer for inspecting logs by website
+- Improved log organization to support easier debugging and troubleshooting
+
+### Changed
+- Logging behavior now routes output to site-specific log files
+- Internal log file structure updated to better support scaling and future deployment work
+
+### Notes
+- Cron job schedules and monitoring logic remain unchanged
+- This release is fully implemented in Bash and maintains backward compatibility with existing log formats
+
+
+
 ## [Unreleased] - 2026-02-06
 
 ### Problems encountered in cloud migration to EC2

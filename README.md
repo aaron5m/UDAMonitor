@@ -56,7 +56,7 @@ UDAMonitor now supports **cloud-based logging via AWS CloudWatch**:
 - Centralized logs allow easy monitoring of uptime across instances.
 - See the Wiki for example CloudWatch outputs and configuration.
 
-## Local Architecture (v1.*)
+## Local Architecture (v2.*)
 
 **Status:** Local execution (development phase)
 
@@ -67,6 +67,37 @@ UDAMonitor now supports **cloud-based logging via AWS CloudWatch**:
 - Designed to later run unattended on cloud infrastructure
 
 This initial version prioritizes correctness, clarity, and portability over scale.
+
+**Logging Architecture**
+
+As of the latest update, logs are **segmented per monitored website** rather than written to a single central file.
+
+Each website has its own dedicated log file, which provides:
+
+- Clear isolation of monitoring data per target
+- Easier debugging and incident investigation
+- Reduced noise as the number of monitored sites scales
+- A structure that aligns with future infrastructure and deployment plans
+
+This approach mirrors common production monitoring patterns where services and targets emit isolated logs rather than sharing a global output.
+
+### Console Log Viewer
+
+View logs for the websites directly from the terminal with:
+```
+bash monitor/bin/watch_monitor.sh
+```
+Shows five most recent logs for each website.
+The viewer is designed to integrate cleanly with cron-based execution and requires no additional dependencies beyond standard Unix tools.
+
+### Design Notes
+
+- Existing cron schedules and monitoring logic remain unchanged
+- Log formats are consistent; only log file organization has been updated
+- All functionality is implemented in Bash to match the current scope of the project
+
+This logging model provides a foundation for future enhancements such as centralized log aggregation, cloud deployment (e.g., EC2), and containerized distributions.
+
 
 --
 

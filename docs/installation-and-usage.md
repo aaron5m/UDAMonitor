@@ -44,7 +44,7 @@ If config/urls.txt is modified, start_monitor.sh must be re-run to apply changes
 
 Cron executes bin/run_monitor.sh for each url at the configured intervals
 
-Logs are written to: **logs/monitor.log**
+Logs are written to: **logs/particular-website.log**
 
 ## 5. Stopping UDAMonitor
 
@@ -55,6 +55,14 @@ bin/stop_monitor.sh
 ```
 
 This safely removes only cron jobs managed by UDAMonitor.
+
+## 6. Watching UDAMonitor
+
+You can see the five most recent log entries for your websites from the console
+
+```
+bin/watch_monitor.sh
+```
 
 ---
 
