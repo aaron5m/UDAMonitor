@@ -4,7 +4,9 @@ set -euo pipefail
 #######################################
 # UDAMonitor - Log Viewer
 # Human-friendly console output
+# whipped together for fun
 #######################################
+
 
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 LOG_DIR="$SCRIPT_DIR/../logs"
@@ -24,10 +26,11 @@ if (( ${#log_files[@]} == 0 )); then
     exit 0
 fi
 
+echo -e "\n"
+
 for logfile in "${log_files[@]}"; do
     filename="$(basename "$logfile")"
 
-    echo -e "\n"
     echo "================================================================"
     echo " Site: $filename (5 most recent log entries)"
     echo "================================================================"
@@ -49,6 +52,7 @@ for logfile in "${log_files[@]}"; do
                     else if (key == "final_status") status = value
                     else if (key == "latency")     latency = value
                     else if (key == "redirect_statuses")     statuses = value
+                    else if (key == "err_msg")     err_msg = value
                 }
 
                 gsub("T", " at ", ts)
@@ -62,10 +66,8 @@ for logfile in "${log_files[@]}"; do
                 printf "\033[1;37;40m %s \033[0m\n", status
                 printf "  -> " final_url " in "
                 printf "\033[1m%s\033[0m", latency
-                printf " seconds\n"
+                printf " seconds " err_msg "\n"
 
-                #printf "%s \n %s \n   -> %s %s in %s seconds\n",
-                 #      ts, url, final_url, status, latency
             }
         '
         
