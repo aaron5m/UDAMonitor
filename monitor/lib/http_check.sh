@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # lib/http_check.sh
 
 #######################################
@@ -105,7 +105,7 @@ check_url() {
     #Echo in line-based key=value format
     echo "timestamp=$timestamp url=$url final_url=$final_url final_status=$final_status redirect_count=$redirect_count latency=$latency redirect_locations=$redirect_locations redirect_statuses=$redirect_statuses err_msg=$err_msg"
 
-    cleanup
+    #cleanup
 }
 
 

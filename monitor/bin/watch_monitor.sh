@@ -27,6 +27,7 @@ fi
 for logfile in "${log_files[@]}"; do
     filename="$(basename "$logfile")"
 
+    echo -e "\n"
     echo "================================================================"
     echo " Site: $filename (5 most recent log entries)"
     echo "================================================================"
@@ -47,15 +48,27 @@ for logfile in "${log_files[@]}"; do
                     else if (key == "final_url")   final_url = value
                     else if (key == "final_status") status = value
                     else if (key == "latency")     latency = value
+                    else if (key == "redirect_statuses")     statuses = value
                 }
 
                 gsub("T", " at ", ts)
+                gsub(/[^|]*$/, "", statuses)
 
-                printf "%s %s -> %s %s in %s seconds\n",
-                       ts, url, final_url, status, latency
+                #printf "\n" ts "\n"
+                printf "\033[1m%s\033[0m\n", ts
+                #printf " \033[1;37;40m %s \033[0m", url
+                printf "\033[1;37;40m%s\033[0m", url
+                printf " -> " statuses
+                printf "\033[1;37;40m %s \033[0m\n", status
+                printf "  -> " final_url " in "
+                printf "\033[1m%s\033[0m", latency
+                printf " seconds\n"
+
+                #printf "%s \n %s \n   -> %s %s in %s seconds\n",
+                 #      ts, url, final_url, status, latency
             }
         '
-
+        
     echo
 done
 
